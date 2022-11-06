@@ -1,14 +1,8 @@
-﻿using System;
-using System.ComponentModel.Design;
-using MarkelInsuranceApp.Models.Claim;
-using MarkelInsuranceApp.Models.Company;
-
-namespace MarkelInsuranceApp.Repositories
+﻿namespace MarkelInsuranceApp.Repositories
 {
-    public interface ICompanyRepository
-    {
-        public Company Get(int companyId);
-    }
+    using MarkelInsuranceApp.Interfaces.Repositories;
+    using MarkelInsuranceApp.Models.Company;
+    using System;
 
     public class CompanyRepository : ICompanyRepository
     {

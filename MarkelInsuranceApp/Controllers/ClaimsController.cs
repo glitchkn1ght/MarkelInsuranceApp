@@ -1,6 +1,9 @@
-﻿using MarkelInsuranceApp.Models.Company;
+﻿using MarkelInsuranceApp.Interfaces.Service;
+using MarkelInsuranceApp.Interfaces.Validation;
+using MarkelInsuranceApp.Models.Company;
 using MarkelInsuranceApp.Models.Response;
 using MarkelInsuranceApp.Service;
+using MarkelInsuranceApp.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,25 +18,35 @@ namespace MarkelInsuranceApp.Controllers
     public class ClaimsController : ControllerBase
     {
         private readonly ILogger<ClaimsController> Logger;
+        private readonly IInputValidator<string> InputValidator;
         private readonly IClaimsService ClaimsService;
-
-        public ClaimsController(ILogger<ClaimsController> logger, IClaimsService claimsService)
+       
+        public ClaimsController(ILogger<ClaimsController> logger, IInputValidator<string> inputValidator, IClaimsService claimsService)
         {
-           this.Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-           this.ClaimsService = claimsService ?? throw new ArgumentNullException(nameof(claimsService));
+            this.Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.InputValidator = inputValidator ?? throw new ArgumentNullException(nameof(inputValidator));
+            this.ClaimsService = claimsService ?? throw new ArgumentNullException(nameof(claimsService));
         }
 
-        [HttpGet("{UCR}")]
+        [HttpGet("{uniqueClaimsReference}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
-        public async Task<IActionResult> Get(string universalClaimsReference)
+        public async Task<IActionResult> Get(string uniqueClaimsReference)
         {
             try 
             {
                 ClaimResponse claimReponse = new ClaimResponse();
 
-                claimReponse = await this.ClaimsService.GetSingleClaimByUCR(universalClaimsReference);
+                if (!this.InputValidator.ValidateInput(uniqueClaimsReference))
+                {
+                    claimReponse.ResponseStatus.Code = -102;
+                    claimReponse.ResponseStatus.Message = "Validation of Unique Claims Reference failed, please check input.";
+
+                    return new BadRequestObjectResult(claimReponse.ResponseStatus);
+                }
+
+                claimReponse = await this.ClaimsService.GetSingleClaimByUCR(uniqueClaimsReference);
 
                 return new OkObjectResult(claimReponse);
             }

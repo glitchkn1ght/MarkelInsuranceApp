@@ -1,14 +1,13 @@
-﻿using MarkelInsuranceApp.Models.Company;
-using MarkelInsuranceApp.Models.Response;
-using MarkelInsuranceApp.Service;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-
-namespace MarkelInsuranceApp.Controllers
+﻿namespace MarkelInsuranceApp.Controllers
 {
+    using MarkelInsuranceApp.Interfaces.Service;
+    using MarkelInsuranceApp.Models.Response;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Threading.Tasks;
+
     [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
@@ -26,8 +25,6 @@ namespace MarkelInsuranceApp.Controllers
         [HttpGet("{companyId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CompanyResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ResponseStatus))]
-        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ResponseStatus))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
         public async Task<IActionResult> Get(int companyId)
         {

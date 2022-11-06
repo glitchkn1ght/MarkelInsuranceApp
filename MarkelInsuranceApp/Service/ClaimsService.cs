@@ -1,32 +1,20 @@
-﻿using MarkelInsuranceApp.Controllers;
-using MarkelInsuranceApp.Mappers;
-using MarkelInsuranceApp.Models.Claim;
-using MarkelInsuranceApp.Models.Company;
-using MarkelInsuranceApp.Models.Response;
-using MarkelInsuranceApp.Repositories;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
-
-namespace MarkelInsuranceApp.Service
+﻿namespace MarkelInsuranceApp.Service
 {
-    public interface IClaimsService
-    {
-        public Task<ClaimResponse> GetSingleClaimByUCR(string universalClaimsReference);
+    using MarkelInsuranceApp.Interfaces.Mappers;
+    using MarkelInsuranceApp.Interfaces.Repositories;
+    using MarkelInsuranceApp.Interfaces.Service;
+    using MarkelInsuranceApp.Models.Claim;
+    using MarkelInsuranceApp.Models.Response;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
-        public Task<List<InsuranceClaim>> GetClaimsForCompany(int CompanyId);
-        
-        public void UpdateClaim(InsuranceClaim claimToUpdate);
-    }
-    
     public class ClaimsService : IClaimsService
     {
         private readonly ILogger<ClaimsService> Logger;
         private readonly IClaimsRepository ClaimsRepository;
         private readonly IClaimsResponseMapper ClaimsMapper;
-
 
         public ClaimsService(ILogger<ClaimsService> logger, IClaimsRepository claimsRepository, IClaimsResponseMapper claimsMapper)
         {

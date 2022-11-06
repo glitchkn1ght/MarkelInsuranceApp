@@ -1,15 +1,9 @@
 ﻿using System;
+using MarkelInsuranceApp.Interfaces.Repositories;
 using MarkelInsuranceApp.Models.Claim;
 
 namespace MarkelInsuranceApp.Repositories
 {
-    public interface IClaimsRepository
-    {
-        public InsuranceClaim Get(string universalClaimsReference);
-
-        public void Update(InsuranceClaim updatedClaim);
-    }
-
     public class ClaimsRespository : IClaimsRepository
     {
         public InsuranceClaim Get(string universalClaimsReference)

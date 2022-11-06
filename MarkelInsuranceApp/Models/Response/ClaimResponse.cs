@@ -5,6 +5,12 @@
 
     public class ClaimResponse : ResponseStatus 
     {
+        public ClaimResponse()
+        {
+            this.ResponseStatus = new ResponseStatus();
+        }
+        public ResponseStatus ResponseStatus { get; set; }
+
         public string UniversalClaimsReference { get; set; }
 
         public int CompanyId { get; set; }

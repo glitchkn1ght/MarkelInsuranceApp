@@ -1,15 +1,10 @@
-﻿using MarkelInsuranceApp.Models.Claim;
+﻿using MarkelInsuranceApp.Interfaces.Mappers;
+using MarkelInsuranceApp.Models.Claim;
 using MarkelInsuranceApp.Models.Response;
 using System;
-using System.Reflection.Metadata.Ecma335;
 
 namespace MarkelInsuranceApp.Mappers
 {
-    public interface IClaimsResponseMapper
-    {
-        public ClaimResponse MapClaimResponse(InsuranceClaim insuranceClaim); 
-    }
-    
     public class ClaimsResponseMapper : IClaimsResponseMapper
     {
         public ClaimResponse MapClaimResponse(InsuranceClaim insuranceClaim)

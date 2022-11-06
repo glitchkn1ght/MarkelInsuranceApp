@@ -1,5 +1,8 @@
 ﻿namespace MarkelInsuranceApp.DependancyResolution
 {
+    using MarkelInsuranceApp.Interfaces.Mappers;
+    using MarkelInsuranceApp.Interfaces.Repositories;
+    using MarkelInsuranceApp.Interfaces.Service;
     using MarkelInsuranceApp.Mappers;
     using MarkelInsuranceApp.Repositories;
     using MarkelInsuranceApp.Service;

@@ -1,4 +1,7 @@
-﻿using MarkelInsuranceApp.Mappers;
+﻿using MarkelInsuranceApp.Interfaces.Mappers;
+using MarkelInsuranceApp.Interfaces.Repositories;
+using MarkelInsuranceApp.Interfaces.Service;
+using MarkelInsuranceApp.Mappers;
 using MarkelInsuranceApp.Models.Company;
 using MarkelInsuranceApp.Models.Response;
 using MarkelInsuranceApp.Repositories;
@@ -8,12 +11,6 @@ using System.Threading.Tasks;
 
 namespace MarkelInsuranceApp.Service
 {
-    public interface ICompanyService
-    {
-        public Task<CompanyResponse> GetCompany(int CompanyId);
-    }
-
-
     public class CompanyService : ICompanyService
     {
         private readonly ILogger<CompanyService> Logger;
