@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MarkelInsuranceApp.Models.Company
+﻿namespace MarkelInsuranceApp.Models.Company
 {
+    using System;
+
     public class Company
     {
         public int Id { get; set; }

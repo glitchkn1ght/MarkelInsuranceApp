@@ -1,9 +1,9 @@
-﻿using MarkelInsuranceApp.Interfaces.Mappers;
-using MarkelInsuranceApp.Models.Company;
-using MarkelInsuranceApp.Models.Response;
-
-namespace MarkelInsuranceApp.Mappers
+﻿namespace MarkelInsuranceApp.Mappers
 {
+    using MarkelInsuranceApp.Interfaces.Mappers;
+    using MarkelInsuranceApp.Models.Company;
+    using MarkelInsuranceApp.Models.Response;
+
     public class CompanyResponseMapper : ICompanyResponseMapper
     {
         public CompanyResponse MapCompanyResponse(Company company)

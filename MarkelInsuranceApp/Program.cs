@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-
 namespace MarkelInsuranceApp
 {
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Serilog;
+
     public class Program
     {
         public static void Main(string[] args)

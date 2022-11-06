@@ -1,8 +1,7 @@
-﻿using MarkelInsuranceApp.Models.Common;
-using System;
-
-namespace MarkelInsuranceApp.Models.Response
+﻿namespace MarkelInsuranceApp.Models.Response
 {
+    using MarkelInsuranceApp.Models.Common;
+
     public class CompanyResponse
     {
         public CompanyResponse()

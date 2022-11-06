@@ -16,7 +16,7 @@
 
         public bool ValidateInput(string input)
         {
-            if (!string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 this.Logger.LogWarning("$[Operation=ValidateInput(StringInputValidator)], Status=Success, Message=Validation of string input failed.");
                 

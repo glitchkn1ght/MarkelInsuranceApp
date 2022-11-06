@@ -1,6 +1,5 @@
 ﻿namespace MarkelInsuranceApp.Models.Response
 {
-    using MarkelInsuranceApp.Models.Claim;
     using System;
 
     public class ClaimResponse : ResponseStatus 

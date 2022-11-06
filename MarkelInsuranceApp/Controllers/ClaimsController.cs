@@ -1,17 +1,14 @@
-﻿using MarkelInsuranceApp.Interfaces.Service;
-using MarkelInsuranceApp.Interfaces.Validation;
-using MarkelInsuranceApp.Models.Company;
-using MarkelInsuranceApp.Models.Response;
-using MarkelInsuranceApp.Service;
-using MarkelInsuranceApp.Validation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-
-namespace MarkelInsuranceApp.Controllers
+﻿namespace MarkelInsuranceApp.Controllers
 {
+    using MarkelInsuranceApp.Interfaces.Service;
+    using MarkelInsuranceApp.Interfaces.Validation;
+    using MarkelInsuranceApp.Models.Response;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Threading.Tasks;
+
     [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]

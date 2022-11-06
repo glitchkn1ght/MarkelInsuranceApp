@@ -1,16 +1,14 @@
-﻿using MarkelInsuranceApp.Interfaces.Mappers;
-using MarkelInsuranceApp.Interfaces.Repositories;
-using MarkelInsuranceApp.Interfaces.Service;
-using MarkelInsuranceApp.Mappers;
-using MarkelInsuranceApp.Models.Company;
-using MarkelInsuranceApp.Models.Response;
-using MarkelInsuranceApp.Repositories;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-
-namespace MarkelInsuranceApp.Service
+﻿namespace MarkelInsuranceApp.Service
 {
+    using MarkelInsuranceApp.Interfaces.Mappers;
+    using MarkelInsuranceApp.Interfaces.Repositories;
+    using MarkelInsuranceApp.Interfaces.Service;
+    using MarkelInsuranceApp.Models.Company;
+    using MarkelInsuranceApp.Models.Response;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Threading.Tasks;
+
     public class CompanyService : ICompanyService
     {
         private readonly ILogger<CompanyService> Logger;

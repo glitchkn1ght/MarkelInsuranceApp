@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MarkelInsuranceApp.Models.Claim
+﻿namespace MarkelInsuranceApp.Models.Claim
 {
+    using System;
+
     public class InsuranceClaim
     {
         public string UCR { get; set; }

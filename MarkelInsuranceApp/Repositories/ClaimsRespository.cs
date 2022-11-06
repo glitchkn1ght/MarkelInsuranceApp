@@ -1,9 +1,9 @@
-﻿using System;
-using MarkelInsuranceApp.Interfaces.Repositories;
-using MarkelInsuranceApp.Models.Claim;
-
-namespace MarkelInsuranceApp.Repositories
+﻿namespace MarkelInsuranceApp.Repositories
 {
+    using System;
+    using MarkelInsuranceApp.Interfaces.Repositories;
+    using MarkelInsuranceApp.Models.Claim;
+
     public class ClaimsRespository : IClaimsRepository
     {
         public InsuranceClaim Get(string universalClaimsReference)
@@ -27,6 +27,4 @@ namespace MarkelInsuranceApp.Repositories
 
         }
     }
-
-
 }
