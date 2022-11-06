@@ -33,13 +33,13 @@ namespace MarkelInsuranceApp.Controllers
         {
             try 
             {
-                Company company = new Company();
+                CompanyResponse companyResponse = new CompanyResponse();
 
                 this.Logger.LogInformation($"[Operation=Get(Company)], Status=Success, Message=Attempting to retrieve data for Company with id {companyId}");
 
-                company = await this.CompanyService.GetCompany(companyId);
+                companyResponse = await this.CompanyService.GetCompany(companyId);
 
-                return new OkObjectResult(company);
+                return new OkObjectResult(companyResponse);
             }
             catch (Exception ex)
             {

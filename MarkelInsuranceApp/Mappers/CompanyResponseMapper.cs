@@ -3,12 +3,12 @@ using MarkelInsuranceApp.Models.Response;
 
 namespace MarkelInsuranceApp.Mappers
 {
-    public interface ICompanyMapper
+    public interface ICompanyResponseMapper
     {
         public CompanyResponse MapCompanyResponse(Company company);
     }
     
-    public class CompanyMapper : ICompanyMapper
+    public class CompanyResponseMapper : ICompanyResponseMapper
     {
         public CompanyResponse MapCompanyResponse(Company company)
         {
