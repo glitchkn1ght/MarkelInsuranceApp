@@ -24,7 +24,7 @@ namespace MarkelInsuranceApp.Controllers
         }
 
         [HttpGet("{UCR}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Company))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
         public async Task<IActionResult> Get(string universalClaimsReference)

@@ -24,7 +24,7 @@ namespace MarkelInsuranceApp.Controllers
         }
 
         [HttpGet("{companyId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Company))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CompanyResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ResponseStatus))]
         [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ResponseStatus))]
@@ -38,7 +38,7 @@ namespace MarkelInsuranceApp.Controllers
                 this.Logger.LogInformation($"[Operation=Get(Company)], Status=Success, Message=Attempting to retrieve data for Company with id {companyId}");
 
                 companyResponse = await this.CompanyService.GetCompany(companyId);
-
+                
                 return new OkObjectResult(companyResponse);
             }
             catch (Exception ex)

@@ -35,8 +35,8 @@ namespace MarkelInsuranceApp.Service
 
             if(company == null)
             {
-                companyResponse.Code = -101;
-                companyResponse.Message = "Could not find Company for this CompanyId";
+                companyResponse.ResponseStatus.Code = -101;
+                companyResponse.ResponseStatus.Message = "Could not find Company for this CompanyId";
             }
 
             else

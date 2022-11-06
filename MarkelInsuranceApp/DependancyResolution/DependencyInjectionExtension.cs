@@ -1,6 +1,7 @@
-﻿
-namespace MarkelInsuranceApp.DependancyResolution
+﻿namespace MarkelInsuranceApp.DependancyResolution
 {
+    using MarkelInsuranceApp.Mappers;
+    using MarkelInsuranceApp.Repositories;
     using MarkelInsuranceApp.Service;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -8,8 +9,14 @@ namespace MarkelInsuranceApp.DependancyResolution
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IClaimsRepository, ClaimsRespository>();
+            services.AddScoped<IClaimsResponseMapper, ClaimsResponseMapper>();
             services.AddScoped<IClaimsService, ClaimsService>();
+
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICompanyResponseMapper, CompanyResponseMapper>();
+            services.AddScoped<ICompanyService, CompanyService>();
+
             return services;
         }
     }

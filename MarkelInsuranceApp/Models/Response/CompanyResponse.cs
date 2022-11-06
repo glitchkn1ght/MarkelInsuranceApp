@@ -3,8 +3,15 @@ using System;
 
 namespace MarkelInsuranceApp.Models.Response
 {
-    public class CompanyResponse : ResponseStatus
+    public class CompanyResponse
     {
+        public CompanyResponse()
+        {
+            CompanyAddress = new Address();
+            ResponseStatus = new ResponseStatus();
+        }
+        public ResponseStatus ResponseStatus { get; set; }
+
         public int CompanyId { get; set; }
 
         public string CompanyName { get; set; }
