@@ -27,15 +27,16 @@
         {
             ClaimResponse claimResponse = new ClaimResponse();
 
-            InsuranceClaim insuranceClaim = this.ClaimsRepository.Get(universalClaimsReference);
+            InsuranceClaim insuranceClaim = await this.ClaimsRepository.Get(universalClaimsReference);
 
-            if (string.IsNullOrWhiteSpace(insuranceClaim.UCR))
+            if (insuranceClaim is null ||string.IsNullOrWhiteSpace(insuranceClaim.UCR))
             {
-                claimResponse.Code = -101;
-                claimResponse.Message = "Could not find Claim for this UCR";
+                claimResponse.ResponseStatus.Code = -101;
+                claimResponse.ResponseStatus.Message = "Could not find matching rows in the database for this UCR";
             }
             else
             {
+                this.Logger.LogInformation($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=Found Matching Rows In database for UCR {universalClaimsReference}, mapping results.");
                 claimResponse = this.ClaimsMapper.MapClaimResponse(insuranceClaim);
             }
 
@@ -49,9 +50,19 @@
             return claims;
         }
 
-        public void UpdateClaim(InsuranceClaim claimToUpdate)
+        public async Task<ClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate)
         {
-            this.ClaimsRepository.Update(claimToUpdate);
+            ClaimResponse claimResponse = new ClaimResponse();
+
+            int result = await this.ClaimsRepository.Update(claimToUpdate); 
+            
+            if (!(result == 0))
+            {
+                claimResponse.ResponseStatus.Code = -121;
+                claimResponse.ResponseStatus.Message = "Could not find matching rows to update in the database for this UCR";
+            }
+
+            return claimResponse;  
         }
     }
 }

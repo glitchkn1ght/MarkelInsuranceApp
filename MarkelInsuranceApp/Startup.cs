@@ -1,6 +1,7 @@
 namespace MarkelInsuranceApp
 {
     using MarkelInsuranceApp.DependancyResolution;
+    using MarkelInsuranceApp.Models.Configuration;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -30,6 +31,15 @@ namespace MarkelInsuranceApp
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            var sqlConfigSettings = Configuration.GetSection("SqlServerConnectionConfiguration");
+            services.Configure<SqlConnectionSettings>(sqlConfigSettings);
+
+            var claimsRepoSettings = Configuration.GetSection("ClaimsRepositorySettings");
+            services.Configure<ClaimsRepositorySettings>(claimsRepoSettings);
+
+            var companyRepoSettings = Configuration.GetSection("CompanyRepositorySettings");
+            services.Configure<CompanyRepositorySettings>(companyRepoSettings);
 
             services.RegisterServices();
         }

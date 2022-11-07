@@ -1,11 +1,12 @@
 ﻿using MarkelInsuranceApp.Models.Claim;
+using System.Threading.Tasks;
 
 namespace MarkelInsuranceApp.Interfaces.Repositories
 {
     public interface IClaimsRepository
     {
-        public InsuranceClaim Get(string universalClaimsReference);
+        public Task<InsuranceClaim> Get(string universalClaimsReference);
 
-        public void Update(InsuranceClaim updatedClaim);
+        public Task<int> Update(InsuranceClaim claimToUpdate);
     }
 }

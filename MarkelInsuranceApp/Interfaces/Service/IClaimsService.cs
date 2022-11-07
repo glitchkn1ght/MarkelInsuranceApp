@@ -11,6 +11,6 @@
 
         public Task<List<InsuranceClaim>> GetClaimsForCompany(int CompanyId);
 
-        public void UpdateClaim(InsuranceClaim claimToUpdate);
+        public Task<ClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate);
     }
 }

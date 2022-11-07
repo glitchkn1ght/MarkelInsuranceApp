@@ -4,6 +4,7 @@
     using MarkelInsuranceApp.Interfaces.Validation;
     using Microsoft.Extensions.Logging;
     using System;
+    using System.Text.RegularExpressions;
 
     public class StringInputValidator: IInputValidator<string>
     {
@@ -15,7 +16,7 @@
         }
 
         public bool ValidateInput(string input)
-        {
+        {   
             if (string.IsNullOrWhiteSpace(input))
             {
                 this.Logger.LogWarning("$[Operation=ValidateInput(StringInputValidator)], Status=Success, Message=Validation of string input failed.");

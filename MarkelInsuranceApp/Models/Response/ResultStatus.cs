@@ -5,7 +5,7 @@
         public ResponseStatus()
         {
             this.Code = 0;
-            this.Message = string.Empty;
+            this.Message = "Success";
         }
 
         public ResponseStatus(int code, string message)
