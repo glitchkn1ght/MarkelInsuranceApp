@@ -12,6 +12,7 @@
 
         public DateTime LossDate { get; set; }
 
+
         public string AssuredName { get; set; }
 
         public decimal IncurredLoss { get; set; }

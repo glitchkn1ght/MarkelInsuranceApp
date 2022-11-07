@@ -17,6 +17,7 @@ namespace MarkelInsuranceApp.Mappers
             result.DateOfLoss = insuranceClaim.LossDate;
             result.AssuredName = insuranceClaim.AssuredName;
             result.IncurredLossAmount = insuranceClaim.IncurredLoss;
+            result.HasClaimBeenClosed = insuranceClaim.Closed;
             result.ClaimAgeInDays = Convert.ToInt32((DateTime.Now - insuranceClaim.ClaimDate).TotalDays);
 
             return result;

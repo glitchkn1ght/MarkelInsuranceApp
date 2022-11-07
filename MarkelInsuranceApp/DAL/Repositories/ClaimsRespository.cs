@@ -33,7 +33,7 @@
 
                 var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetClaimProc, parameters, commandType: CommandType.StoredProcedure);
 
-                return result.First();
+                return result.FirstOrDefault();
             }
         }
 

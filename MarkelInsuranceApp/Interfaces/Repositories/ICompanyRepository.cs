@@ -1,10 +1,10 @@
-﻿using MarkelInsuranceApp.Models.Company;
-
-namespace MarkelInsuranceApp.Interfaces.Repositories
+﻿namespace MarkelInsuranceApp.Interfaces.Repositories
 {
+    using MarkelInsuranceApp.Models.Company;
+    using System.Threading.Tasks;
+
     public interface ICompanyRepository
     {
-        public Company Get(int companyId);
+        public Task<Company> Get(int companyId);
     }
-
 }

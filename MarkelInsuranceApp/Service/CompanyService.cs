@@ -22,20 +22,22 @@
             this.CompanyResponseMapper = companyResponseMapper ?? throw new ArgumentNullException(nameof(companyResponseMapper));
         }
 
-        public async Task<CompanyResponse> GetCompany(int CompanyId)
+        public async Task<CompanyResponse> GetCompanyById(int CompanyId)
         {
             CompanyResponse companyResponse = new CompanyResponse();
 
-            Company company = this.CompanyRepository.Get(CompanyId);
+            Company company = await this.CompanyRepository.Get(CompanyId);
 
             if(company == null)
             {
                 companyResponse.ResponseStatus.Code = -101;
-                companyResponse.ResponseStatus.Message = "Could not find Company for this CompanyId";
+                companyResponse.ResponseStatus.Message = $"No matching rows found in database for companyId {CompanyId}.";
+                this.Logger.LogWarning($"[Operation=GetCompanyById(CompanyService)], Status=Success, Message=No matching rows found in database for companyId {CompanyId}.");
             }
 
             else
             {
+                this.Logger.LogInformation($"[Operation=GetCompanyById(CompanyService)], Status=Success, Message=Matching rows found in database for CompanyId {CompanyId}, mapping results.");
                 companyResponse = this.CompanyResponseMapper.MapCompanyResponse(company);
             }
 

@@ -5,7 +5,7 @@
     
     public interface ICompanyService
     {
-        public Task<CompanyResponse> GetCompany(int CompanyId);
+        public Task<CompanyResponse> GetCompanyById(int CompanyId);
     }
 
 }

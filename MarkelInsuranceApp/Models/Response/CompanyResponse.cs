@@ -11,13 +11,13 @@
         }
         public ResponseStatus ResponseStatus { get; set; }
 
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; } = null;
 
         public string CompanyName { get; set; }
 
-        public Address CompanyAddress { get; set; } 
+        public Address CompanyAddress { get; set; }
 
-        public bool HasActiveInsurancePolicy { get; set; }
+        public bool? HasActiveInsurancePolicy { get; set; } = null;
 
         public string InsuranceEndDate { get; set; }
     }

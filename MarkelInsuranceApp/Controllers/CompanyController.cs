@@ -34,7 +34,7 @@
 
                 this.Logger.LogInformation($"[Operation=Get(Company)], Status=Success, Message=Attempting to retrieve data for Company with id {companyId}");
 
-                companyResponse = await this.CompanyService.GetCompany(companyId);
+                companyResponse = await this.CompanyService.GetCompanyById(companyId);
                 
                 return new OkObjectResult(companyResponse);
             }

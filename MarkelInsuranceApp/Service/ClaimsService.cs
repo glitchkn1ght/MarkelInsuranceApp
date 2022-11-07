@@ -23,20 +23,21 @@
             this.ClaimsMapper = claimsMapper ?? throw new ArgumentNullException(nameof(claimsMapper));
         }
 
-        public async Task<ClaimResponse> GetSingleClaimByUCR(string universalClaimsReference)
+        public async Task<ClaimResponse> GetSingleClaimByUCR(string uniqueClaimsReference)
         {
             ClaimResponse claimResponse = new ClaimResponse();
 
-            InsuranceClaim insuranceClaim = await this.ClaimsRepository.Get(universalClaimsReference);
+            InsuranceClaim insuranceClaim = await this.ClaimsRepository.Get(uniqueClaimsReference);
 
-            if (insuranceClaim is null ||string.IsNullOrWhiteSpace(insuranceClaim.UCR))
+            if (insuranceClaim is null)
             {
                 claimResponse.ResponseStatus.Code = -101;
-                claimResponse.ResponseStatus.Message = "Could not find matching rows in the database for this UCR";
+                claimResponse.ResponseStatus.Message = $"No matching rows found in database for UCR {uniqueClaimsReference}.";
+                this.Logger.LogWarning($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=No Matching rows found in database for UCR {uniqueClaimsReference}");
             }
             else
             {
-                this.Logger.LogInformation($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=Found Matching Rows In database for UCR {universalClaimsReference}, mapping results.");
+                this.Logger.LogInformation($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=Matching rows found in database for UCR {uniqueClaimsReference}, mapping results.");
                 claimResponse = this.ClaimsMapper.MapClaimResponse(insuranceClaim);
             }
 

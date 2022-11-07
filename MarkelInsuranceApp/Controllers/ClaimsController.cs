@@ -69,11 +69,11 @@
 
                 claimReponse = await this.ClaimsService.UpdateClaim(claimToUpdate);
 
-                return new OkObjectResult(claimReponse);
+                return new OkObjectResult(claimReponse.ResponseStatus);
             }
             catch (Exception ex)
             {
-                this.Logger.LogError($"[Operation=Get(Company)], Status=Failed, Message=Exeception thrown: {ex.Message}");
+                this.Logger.LogError($"[Operation=Get(Claims)], Status=Failed, Message=Exeception thrown: {ex.Message}");
 
                 return new ObjectResult(new ResponseStatus(500, "Internal Server Error")) { StatusCode = 500 };
             }
