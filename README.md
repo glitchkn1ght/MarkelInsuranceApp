@@ -1,5 +1,19 @@
 # MarkelInsuranceApp
 
+## From James
+### Custom Error Codes
+- 10x Company Retrieval Error
+- 11x Claim Retrieval Error
+- 12x Claim Update Error
+
+### Considerations
+
+### Points For Improvment
+
+
+
+
+## OriginalSpec
 API Tech Test
 Background
 We are creating a new front end to an existing SQL Server database, and need a restful DotNetCore
