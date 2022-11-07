@@ -45,7 +45,5 @@
                 return new ObjectResult(new ResponseStatus(500, "Internal Server Error")) { StatusCode = 500 };
             }
         }
-
-
     }
 }
