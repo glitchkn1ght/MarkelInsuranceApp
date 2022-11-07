@@ -1,16 +1,16 @@
 ﻿namespace MarkelInsuranceApp.Repositories
 {
-    using System;
+    using Dapper;
+    using MarkelInsuranceApp.DAL.Polly.ConnectionFactory;
     using MarkelInsuranceApp.Interfaces.Repositories;
     using MarkelInsuranceApp.Models.Claim;
-    using Dapper;
-    using Microsoft.Extensions.Options;
     using MarkelInsuranceApp.Models.Configuration;
-    using System.Data.SqlClient;
+    using Microsoft.Extensions.Options;
+    using System;
+    using System.Collections.Generic;
     using System.Data;
-    using MarkelInsuranceApp.DAL.Polly.ConnectionFactory;
-    using System.Threading.Tasks;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class ClaimsRespository : IClaimsRepository
     {
@@ -34,6 +34,20 @@
                 var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetClaimProc, parameters, commandType: CommandType.StoredProcedure);
 
                 return result.FirstOrDefault();
+            }
+        }
+
+        public async Task<IEnumerable<InsuranceClaim>> GetAllByCompany(int companyId)
+        {
+            using (IDbConnection connection = this.ConnectionFactory.CreateOpenConnection())
+            {
+                var parameters = new DynamicParameters();
+
+                parameters.Add("@companyId", companyId);
+
+                var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetClaimProc, parameters, commandType: CommandType.StoredProcedure);
+
+                return result;
             }
         }
 

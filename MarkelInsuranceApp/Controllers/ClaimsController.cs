@@ -56,7 +56,28 @@
             }
         }
 
-        
+        [HttpGet("{companyId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
+        public async Task<IActionResult> GetAllByCompany(int companyId)
+        {
+            try
+            {
+                ClaimResponse claimReponse = new ClaimResponse();
+
+              //  claimReponse = await this.ClaimsService.GetClaimsForCompany(companyId);
+
+                return new OkObjectResult(claimReponse);
+            }
+            catch (Exception ex)
+            {
+                this.Logger.LogError($"[Operation=Get(Company)], Status=Failed, Message=Exeception thrown: {ex.Message}");
+
+                return new ObjectResult(new ResponseStatus(500, "Internal Server Error")) { StatusCode = 500 };
+            }
+        }
+
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]

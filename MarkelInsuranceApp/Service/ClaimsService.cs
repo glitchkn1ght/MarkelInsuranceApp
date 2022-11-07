@@ -8,6 +8,7 @@
     using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class ClaimsService : IClaimsService
@@ -44,9 +45,16 @@
             return claimResponse;
         }
 
-        public async Task<List<InsuranceClaim>> GetClaimsForCompany(int CompanyId)
+        public async Task<List<InsuranceClaim>> GetClaimsForCompany(int companyId)
         {
             List<InsuranceClaim> claims = new List<InsuranceClaim>();
+
+            claims = (await this.ClaimsRepository.GetAllByCompany(companyId)).ToList();
+
+            if(claims.Count == 0)
+            {
+
+            }
 
             return claims;
         }
@@ -60,7 +68,8 @@
             if (!(result == 0))
             {
                 claimResponse.ResponseStatus.Code = -121;
-                claimResponse.ResponseStatus.Message = "Could not find matching rows to update in the database for this UCR";
+                claimResponse.ResponseStatus.Message = $"No matching rows found to update in the database for UCR {claimToUpdate.UCR}";
+                this.Logger.LogWarning($"[Operation=UpdateClaim(ClaimsService)], Status=Success, Message=No matching rows found to update in the database for UCR {claimToUpdate.UCR}");
             }
 
             return claimResponse;  
