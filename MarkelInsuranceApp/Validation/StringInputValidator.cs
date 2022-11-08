@@ -8,9 +8,9 @@
 
     public class StringInputValidator: IInputValidator<string>
     {
-        private readonly ILogger<CompanyController> Logger;
+        private readonly ILogger<StringInputValidator> Logger;
 
-        public StringInputValidator(ILogger<CompanyController> logger)
+        public StringInputValidator(ILogger<StringInputValidator> logger)
         {
             this.Logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -19,7 +19,7 @@
         {   
             if (string.IsNullOrWhiteSpace(input))
             {
-                this.Logger.LogWarning("$[Operation=ValidateInput(StringInputValidator)], Status=Success, Message=Validation of string input failed.");
+                this.Logger.LogWarning("[Operation=ValidateInput(StringInputValidator)], Status=Success, Message=Validation of string input failed.");
                 
                 return false;
             }

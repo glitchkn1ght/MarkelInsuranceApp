@@ -1,14 +1,15 @@
-﻿namespace MarkelInsuranceApp.Models.Response
+﻿namespace MarkelInsuranceApp.Models.Response.Claim
 {
     using System.Collections.Generic;
+    using MarkelInsuranceApp.Models.Response.Common;
     using MarkelInsuranceApp.Models.Response.Mapped;
 
     public class MultiClaimResponse
     {
         public MultiClaimResponse()
         {
-            this.ResponseStatus = new ResponseStatus();
-            this.Claims = new List<MappedClaim>();
+            ResponseStatus = new ResponseStatus();
+            Claims = new List<MappedClaim>();
         }
         public ResponseStatus ResponseStatus { get; set; }
 

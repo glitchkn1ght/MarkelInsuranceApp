@@ -4,7 +4,7 @@
     using MarkelInsuranceApp.Interfaces.Repositories;
     using MarkelInsuranceApp.Interfaces.Service;
     using MarkelInsuranceApp.Models.Company;
-    using MarkelInsuranceApp.Models.Response;
+    using MarkelInsuranceApp.Models.Response.Company;
     using Microsoft.Extensions.Logging;
     using System;
     using System.Threading.Tasks;

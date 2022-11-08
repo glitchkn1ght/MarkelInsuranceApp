@@ -4,7 +4,7 @@
     using MarkelInsuranceApp.Interfaces.Repositories;
     using MarkelInsuranceApp.Interfaces.Service;
     using MarkelInsuranceApp.Models.Claim;
-    using MarkelInsuranceApp.Models.Response;
+    using MarkelInsuranceApp.Models.Response.Claim;
     using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
@@ -70,20 +70,20 @@
             return multiClaimResponse;
         }
 
-        public async Task<SingleClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate)
+        public async Task<ClaimUpdateResponse> UpdateClaim(InsuranceClaim claimToUpdate)
         {
-            SingleClaimResponse claimResponse = new SingleClaimResponse();
+            ClaimUpdateResponse claimUpdateResponse = new ClaimUpdateResponse();
 
             int result = await this.ClaimsRepository.Update(claimToUpdate); 
             
             if (!(result == 0))
             {
-                claimResponse.ResponseStatus.Code = -121;
-                claimResponse.ResponseStatus.Message = $"No matching rows found to update in the database for UCR {claimToUpdate.UCR}";
+                claimUpdateResponse.ResponseStatus.Code = -122;
+                claimUpdateResponse.ResponseStatus.Message = $"No matching rows found to update in the database for UCR {claimToUpdate.UCR}";
                 this.Logger.LogWarning($"[Operation=UpdateClaim(ClaimsService)], Status=Success, Message=No matching rows found to update in the database for UCR {claimToUpdate.UCR}");
             }
 
-            return claimResponse;  
+            return claimUpdateResponse;  
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿namespace MarkelInsuranceApp.Models.Response
+﻿namespace MarkelInsuranceApp.Models.Response.Common
 {
     public class ResponseStatus
     {
         public ResponseStatus()
         {
-            this.Code = 0;
-            this.Message = "Success";
+            Code = 0;
+            Message = "Success";
         }
 
         public ResponseStatus(int code, string message)
         {
-            this.Code = code;
-            this.Message = message;
+            Code = code;
+            Message = message;
         }
 
         public int Code { get; set; }

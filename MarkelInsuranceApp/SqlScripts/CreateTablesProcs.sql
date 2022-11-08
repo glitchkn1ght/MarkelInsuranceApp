@@ -110,6 +110,11 @@ GO
 
 CREATE PROCEDURE [dbo].[Single_Claim_Update]
 	@UCR Varchar(20),
+	@CompanyId int,
+	@ClaimDate DATE,
+	@LossDate DATE,
+	@AssuredName varchar(100),
+	@IncurredLoss INT,
 	@Closed bit
 AS
 BEGIN
@@ -119,8 +124,15 @@ BEGIN
 	Declare @retVal int 
 
     UPDATE [dbo].[Claims]
-	SET Closed = @Closed
-	WHERE UCR = @UCR
+	SET 
+		[CompanyId] = @CompanyId,
+		[ClaimDate] = @ClaimDate,
+		[LossDate] = @LossDate,
+		[AssuredName] = @AssuredName,
+		[IncurredLoss] = @IncurredLoss,
+		[Closed] = @Closed
+	WHERE 
+		UCR = @UCR
 
 	IF @@ROWCOUNT = 0
 		set @retVal = -101

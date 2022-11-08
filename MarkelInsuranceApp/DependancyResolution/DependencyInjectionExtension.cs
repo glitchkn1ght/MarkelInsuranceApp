@@ -7,6 +7,7 @@
     using MarkelInsuranceApp.Interfaces.Service;
     using MarkelInsuranceApp.Interfaces.Validation;
     using MarkelInsuranceApp.Mappers;
+    using MarkelInsuranceApp.Models.Claim;
     using MarkelInsuranceApp.Repositories;
     using MarkelInsuranceApp.Service;
     using MarkelInsuranceApp.Validation;
@@ -16,8 +17,8 @@
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            
             services.AddScoped<IInputValidator<string>, StringInputValidator>();
+            services.AddScoped<IInputValidator<InsuranceClaim>, ClaimUpdateValidator>();
 
             services.AddTransient<IPollyRetryPolicy, PollyRetryPolicy>();
             services.AddTransient<IPollyConnectionFactory, PollySqlConnectionFactory>();

@@ -1,6 +1,7 @@
-﻿using MarkelInsuranceApp.Models.Response.Mapped;
+﻿using MarkelInsuranceApp.Models.Response.Common;
+using MarkelInsuranceApp.Models.Response.Mapped;
 
-namespace MarkelInsuranceApp.Models.Response
+namespace MarkelInsuranceApp.Models.Response.Company
 {
     public class CompanyResponse
     {

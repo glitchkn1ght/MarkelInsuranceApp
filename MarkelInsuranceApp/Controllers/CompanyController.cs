@@ -1,7 +1,7 @@
 ﻿namespace MarkelInsuranceApp.Controllers
 {
     using MarkelInsuranceApp.Interfaces.Service;
-    using MarkelInsuranceApp.Models.Response;
+    using MarkelInsuranceApp.Models.Response.Company;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -28,10 +28,10 @@
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(CompanyResponse))]
         public async Task<IActionResult> Get(int companyId)
         {
+            CompanyResponse companyResponse = new CompanyResponse();
+
             try 
             {
-                CompanyResponse companyResponse = new CompanyResponse();
-
                 this.Logger.LogInformation($"[Operation=Get(Company)], Status=Success, Message=Attempting to retrieve data for Company with id {companyId}");
 
                 companyResponse = await this.CompanyService.GetCompanyById(companyId);
@@ -42,7 +42,10 @@
             {
                 this.Logger.LogError($"[Operation=Get(Company)], Status=Failed, Message=Exeception thrown: {ex.Message}");
 
-                return new ObjectResult(new ResponseStatus(500, "Internal Server Error")) { StatusCode = 500 };
+                companyResponse.ResponseStatus.Code = 500;
+                companyResponse.ResponseStatus.Message = "Internal Server Error";
+
+                return new ObjectResult(companyResponse) { StatusCode = 500 };
             }
         }
     }

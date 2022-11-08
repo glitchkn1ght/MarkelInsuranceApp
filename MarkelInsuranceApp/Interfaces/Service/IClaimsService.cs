@@ -1,8 +1,7 @@
 ﻿namespace MarkelInsuranceApp.Interfaces.Service
 {
     using MarkelInsuranceApp.Models.Claim;
-    using MarkelInsuranceApp.Models.Response;
-    using System.Collections.Generic;
+    using MarkelInsuranceApp.Models.Response.Claim;
     using System.Threading.Tasks;
 
     public interface IClaimsService
@@ -11,6 +10,6 @@
 
         public Task<MultiClaimResponse> GetAllClaimsForCompany(int CompanyId);
 
-        public Task<SingleClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate);
+        public Task<ClaimUpdateResponse> UpdateClaim(InsuranceClaim claimToUpdate);
     }
 }
