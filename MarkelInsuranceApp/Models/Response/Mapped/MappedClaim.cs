@@ -15,7 +15,7 @@
 
         public decimal? IncurredLossAmount { get; set; } = null;
 
-        public double? ClaimAgeInDays { get; set; } = null;
+        public int? ClaimAgeInDays { get; set; } = null;
 
         public bool? HasClaimBeenClosed { get; set; } = null;
     }

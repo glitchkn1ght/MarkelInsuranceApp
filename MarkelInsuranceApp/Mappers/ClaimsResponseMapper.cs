@@ -21,7 +21,7 @@
 
             if(!(insuranceClaim.ClaimDate == null || insuranceClaim.ClaimDate == default(DateTime)))
             {
-                result.ClaimAgeInDays = (DateTime.Now - (DateTime)insuranceClaim.ClaimDate).TotalDays;
+                result.ClaimAgeInDays = (int)(DateTime.Now - (DateTime)insuranceClaim.ClaimDate).TotalDays;
             }
 
             else
