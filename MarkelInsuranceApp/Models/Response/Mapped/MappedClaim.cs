@@ -1,15 +1,8 @@
-﻿namespace MarkelInsuranceApp.Models.Response
+﻿namespace MarkelInsuranceApp.Models.Response.Mapped
 {
     using System;
-
-    public class ClaimResponse
+    public class MappedClaim
     {
-        public ClaimResponse()
-        {
-            this.ResponseStatus = new ResponseStatus();
-        }
-        public ResponseStatus ResponseStatus { get; set; }
-
         public string UniversalClaimsReference { get; set; }
 
         public int? CompanyId { get; set; } = null;
@@ -22,7 +15,7 @@
 
         public decimal? IncurredLossAmount { get; set; } = null;
 
-        public int? ClaimAgeInDays { get; set; } = null;
+        public double? ClaimAgeInDays { get; set; } = null;
 
         public bool? HasClaimBeenClosed { get; set; } = null;
     }

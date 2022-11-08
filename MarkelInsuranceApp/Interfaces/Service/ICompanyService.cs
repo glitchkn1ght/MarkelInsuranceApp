@@ -7,5 +7,4 @@
     {
         public Task<CompanyResponse> GetCompanyById(int CompanyId);
     }
-
 }

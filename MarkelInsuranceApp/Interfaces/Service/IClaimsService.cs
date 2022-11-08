@@ -7,10 +7,10 @@
 
     public interface IClaimsService
     {
-        public Task<ClaimResponse> GetSingleClaimByUCR(string universalClaimsReference);
+        public Task<SingleClaimResponse> GetSingleClaimByUCR(string universalClaimsReference);
 
-        public Task<List<InsuranceClaim>> GetClaimsForCompany(int CompanyId);
+        public Task<MultiClaimResponse> GetAllClaimsForCompany(int CompanyId);
 
-        public Task<ClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate);
+        public Task<SingleClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate);
     }
 }

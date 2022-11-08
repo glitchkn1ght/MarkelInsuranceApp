@@ -26,15 +26,15 @@
             this.ClaimsService = claimsService ?? throw new ArgumentNullException(nameof(claimsService));
         }
 
-        [HttpGet("{uniqueClaimsReference}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
-        public async Task<IActionResult> Get(string uniqueClaimsReference)
+        [HttpGet("GetSingleClaimByUCR/{uniqueClaimsReference}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SingleClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(SingleClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(SingleClaimResponse))]
+        public async Task<IActionResult> GetSingleClaimByUCR(string uniqueClaimsReference)
         {
             try 
             {
-                ClaimResponse claimReponse = new ClaimResponse();
+                SingleClaimResponse claimReponse = new SingleClaimResponse();
 
                 if (!this.InputValidator.ValidateInput(uniqueClaimsReference))
                 {
@@ -56,19 +56,19 @@
             }
         }
 
-        [HttpGet("{companyId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
-        public async Task<IActionResult> GetAllByCompany(int companyId)
+        [HttpGet("GetAllClaimsByCompany/{companyId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MultiClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(MultiClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(MultiClaimResponse))]
+        public async Task<IActionResult> GetAllClaimsByCompany(int companyId)
         {
             try
             {
-                ClaimResponse claimReponse = new ClaimResponse();
+                MultiClaimResponse multiClaimReponse = new MultiClaimResponse();
 
-              //  claimReponse = await this.ClaimsService.GetClaimsForCompany(companyId);
+                multiClaimReponse = await this.ClaimsService.GetAllClaimsForCompany(companyId);
 
-                return new OkObjectResult(claimReponse);
+                return new OkObjectResult(multiClaimReponse);
             }
             catch (Exception ex)
             {
@@ -79,14 +79,14 @@
         }
 
         [HttpPut()]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ClaimResponse))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SingleClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(SingleClaimResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(SingleClaimResponse))]
         public async Task<IActionResult> Update([FromBody] InsuranceClaim claimToUpdate)
         {
             try
             {
-                ClaimResponse claimReponse = new ClaimResponse();
+                SingleClaimResponse claimReponse = new SingleClaimResponse();
 
                 claimReponse = await this.ClaimsService.UpdateClaim(claimToUpdate);
 

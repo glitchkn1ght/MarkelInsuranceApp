@@ -24,8 +24,8 @@
 
         [HttpGet("{companyId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CompanyResponse))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseStatus))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseStatus))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(CompanyResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(CompanyResponse))]
         public async Task<IActionResult> Get(int companyId)
         {
             try 

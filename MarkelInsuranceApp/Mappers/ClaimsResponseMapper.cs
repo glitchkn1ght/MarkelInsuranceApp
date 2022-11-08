@@ -2,23 +2,32 @@
 {
     using MarkelInsuranceApp.Interfaces.Mappers;
     using MarkelInsuranceApp.Models.Claim;
-    using MarkelInsuranceApp.Models.Response;
+    using MarkelInsuranceApp.Models.Response.Mapped;
     using System;
 
     public class ClaimsResponseMapper : IClaimsResponseMapper
     {
-        public ClaimResponse MapClaimResponse(InsuranceClaim insuranceClaim)
+        public MappedClaim MapClaimResponse(InsuranceClaim insuranceClaim)
         {
-            ClaimResponse result = new ClaimResponse();
+            MappedClaim result = new MappedClaim();
 
             result.UniversalClaimsReference = insuranceClaim.UCR;
             result.CompanyId = insuranceClaim.CompanyId;
-            result.DateOfClaim = insuranceClaim.ClaimDate;
-            result.DateOfLoss = insuranceClaim.LossDate;
+            result.DateOfClaim = (insuranceClaim.ClaimDate == default(DateTime) ? null : (DateTime?)insuranceClaim.ClaimDate);
+            result.DateOfLoss = (insuranceClaim.LossDate == default(DateTime) ? null : (DateTime?)insuranceClaim.LossDate);
             result.AssuredName = insuranceClaim.AssuredName;
             result.IncurredLossAmount = insuranceClaim.IncurredLoss;
             result.HasClaimBeenClosed = insuranceClaim.Closed;
-            result.ClaimAgeInDays = Convert.ToInt32((DateTime.Now - insuranceClaim.ClaimDate).TotalDays);
+
+            if(!(insuranceClaim.ClaimDate == null || insuranceClaim.ClaimDate == default(DateTime)))
+            {
+                result.ClaimAgeInDays = (DateTime.Now - (DateTime)insuranceClaim.ClaimDate).TotalDays;
+            }
+
+            else
+            {
+                result.ClaimAgeInDays = 0;
+            }
 
             return result;
         }

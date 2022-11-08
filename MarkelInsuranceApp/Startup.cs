@@ -64,7 +64,6 @@ namespace MarkelInsuranceApp
                 options.RoutePrefix = string.Empty;
             });
 
-
             app.UseRouting();
 
             app.UseAuthorization();

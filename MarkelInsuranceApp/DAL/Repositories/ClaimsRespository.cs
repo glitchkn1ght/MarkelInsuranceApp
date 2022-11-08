@@ -31,7 +31,7 @@
 
                 parameters.Add("@UCR", universalClaimsReference);
 
-                var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetClaimProc, parameters, commandType: CommandType.StoredProcedure);
+                var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetSingleClaimProc, parameters, commandType: CommandType.StoredProcedure);
 
                 return result.FirstOrDefault();
             }
@@ -43,9 +43,9 @@
             {
                 var parameters = new DynamicParameters();
 
-                parameters.Add("@companyId", companyId);
+                parameters.Add("@CompanyId", companyId);
 
-                var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetClaimProc, parameters, commandType: CommandType.StoredProcedure);
+                var result = await connection.QueryAsync<InsuranceClaim>(this.ClaimsRepositorySettings.GetAllClaimsForCompanyProc, parameters, commandType: CommandType.StoredProcedure);
 
                 return result;
             }

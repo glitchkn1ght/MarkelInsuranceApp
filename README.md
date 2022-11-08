@@ -1,6 +1,15 @@
 # MarkelInsuranceApp
 
 ## From James
+
+### TO Dot
+- Check swagger pages for all controllers.
+- Check response types for all controllers.
+- How will update param be validated?
+- Make sure usings are all inside namespace and unused ones are removed. 
+- 
+
+
 ### Custom Error Codes
 - 10x Company Retrieval Error
 - 11x Claim Retrieval Error

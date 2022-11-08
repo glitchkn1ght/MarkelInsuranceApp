@@ -38,7 +38,7 @@
             else
             {
                 this.Logger.LogInformation($"[Operation=GetCompanyById(CompanyService)], Status=Success, Message=Matching rows found in database for CompanyId {CompanyId}, mapping results.");
-                companyResponse = this.CompanyResponseMapper.MapCompanyResponse(company);
+                companyResponse.Company = this.CompanyResponseMapper.MapCompanyResponse(company);
             }
 
             return companyResponse;

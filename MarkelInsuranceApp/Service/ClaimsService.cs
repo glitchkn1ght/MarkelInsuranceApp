@@ -24,9 +24,9 @@
             this.ClaimsMapper = claimsMapper ?? throw new ArgumentNullException(nameof(claimsMapper));
         }
 
-        public async Task<ClaimResponse> GetSingleClaimByUCR(string uniqueClaimsReference)
+        public async Task<SingleClaimResponse> GetSingleClaimByUCR(string uniqueClaimsReference)
         {
-            ClaimResponse claimResponse = new ClaimResponse();
+            SingleClaimResponse claimResponse = new SingleClaimResponse();
 
             InsuranceClaim insuranceClaim = await this.ClaimsRepository.Get(uniqueClaimsReference);
 
@@ -39,29 +39,40 @@
             else
             {
                 this.Logger.LogInformation($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=Matching rows found in database for UCR {uniqueClaimsReference}, mapping results.");
-                claimResponse = this.ClaimsMapper.MapClaimResponse(insuranceClaim);
+                claimResponse.Claim = this.ClaimsMapper.MapClaimResponse(insuranceClaim);
             }
 
             return claimResponse;
         }
 
-        public async Task<List<InsuranceClaim>> GetClaimsForCompany(int companyId)
+        public async Task<MultiClaimResponse> GetAllClaimsForCompany(int companyId)
         {
-            List<InsuranceClaim> claims = new List<InsuranceClaim>();
+            MultiClaimResponse multiClaimResponse= new MultiClaimResponse();
 
-            claims = (await this.ClaimsRepository.GetAllByCompany(companyId)).ToList();
+            List<InsuranceClaim> rawClaims = (await this.ClaimsRepository.GetAllByCompany(companyId)).ToList();
 
-            if(claims.Count == 0)
+            if(rawClaims.Count == 0)
             {
-
+                multiClaimResponse.ResponseStatus.Code = -111;
+                multiClaimResponse.ResponseStatus.Message = $"No matching rows found in database for CompanyId {companyId}";
+                this.Logger.LogWarning($"[Operation=GetAllClaimsForCompany(ClaimsService)], Status=Success, Message=No Matching rows found in database for CompanyId {companyId}");
             }
 
-            return claims;
+            else
+            {
+                this.Logger.LogInformation($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=Matching rows found in database for CompanyId {companyId}, mapping results.");
+                foreach (InsuranceClaim claim in rawClaims)
+                {
+                    multiClaimResponse.Claims.Add(this.ClaimsMapper.MapClaimResponse(claim));
+                }
+            }
+
+            return multiClaimResponse;
         }
 
-        public async Task<ClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate)
+        public async Task<SingleClaimResponse> UpdateClaim(InsuranceClaim claimToUpdate)
         {
-            ClaimResponse claimResponse = new ClaimResponse();
+            SingleClaimResponse claimResponse = new SingleClaimResponse();
 
             int result = await this.ClaimsRepository.Update(claimToUpdate); 
             

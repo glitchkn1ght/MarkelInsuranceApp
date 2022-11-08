@@ -2,10 +2,10 @@
 {
     public class ClaimsRepositorySettings
     {
-        public string GetClaimProc { get; set; }
+        public string GetSingleClaimProc { get; set; }
 
         public string UpdateSingleClaimProc { get; set; }
 
-        public string GetCompanyClamsProc { get; set; }
+        public string GetAllClaimsForCompanyProc { get; set; }
     }
 }

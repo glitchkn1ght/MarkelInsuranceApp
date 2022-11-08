@@ -16,6 +16,7 @@
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
+            
             services.AddScoped<IInputValidator<string>, StringInputValidator>();
 
             services.AddTransient<IPollyRetryPolicy, PollyRetryPolicy>();
