@@ -4,14 +4,12 @@
     using MarkelInsuranceApp.Models.Response.Common;
     using MarkelInsuranceApp.Models.Response.Mapped;
 
-    public class MultiClaimResponse
+    public class MultiClaimResponse : BaseResponse
     {
-        public MultiClaimResponse()
+        public MultiClaimResponse() : base()
         {
-            ResponseStatus = new ResponseStatus();
             Claims = new List<MappedClaim>();
         }
-        public ResponseStatus ResponseStatus { get; set; }
 
         public List<MappedClaim> Claims { get; set; }
     }

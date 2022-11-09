@@ -3,14 +3,12 @@
     using MarkelInsuranceApp.Models.Response.Common;
     using MarkelInsuranceApp.Models.Response.Mapped;
 
-    public class SingleClaimResponse
+    public class SingleClaimResponse : BaseResponse
     {
-        public SingleClaimResponse()
+        public SingleClaimResponse() :base()
         {
-            ResponseStatus = new ResponseStatus();
             Claim = new MappedClaim();
         }
-        public ResponseStatus ResponseStatus { get; set; }
 
         public MappedClaim Claim { get; set; }
     }

@@ -4,7 +4,6 @@
     using MarkelInsuranceApp.Interfaces.Validation;
     using MarkelInsuranceApp.Models.Claim;
     using MarkelInsuranceApp.Models.Response.Claim;
-    using MarkelInsuranceApp.Models.Response.Company;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;

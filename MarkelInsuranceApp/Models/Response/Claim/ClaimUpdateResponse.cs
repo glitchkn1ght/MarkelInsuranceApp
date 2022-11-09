@@ -2,12 +2,10 @@
 {
     using MarkelInsuranceApp.Models.Response.Common;
 
-    public class ClaimUpdateResponse
+    public class ClaimUpdateResponse : BaseResponse
     {
-        public ClaimUpdateResponse()
+        public ClaimUpdateResponse() : base()
         {
-            ResponseStatus = new ResponseStatus();
         }
-        public ResponseStatus ResponseStatus { get; set; }
     }
 }

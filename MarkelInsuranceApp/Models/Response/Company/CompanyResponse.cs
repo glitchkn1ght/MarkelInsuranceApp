@@ -3,14 +3,12 @@ using MarkelInsuranceApp.Models.Response.Mapped;
 
 namespace MarkelInsuranceApp.Models.Response.Company
 {
-    public class CompanyResponse
+    public class CompanyResponse : BaseResponse
     {
-        public CompanyResponse()
+        public CompanyResponse() : base()
         {
             Company = new MappedCompany();
-            ResponseStatus = new ResponseStatus();
         }
-        public ResponseStatus ResponseStatus { get; set; }
 
         public MappedCompany Company { get; set; }
     }
