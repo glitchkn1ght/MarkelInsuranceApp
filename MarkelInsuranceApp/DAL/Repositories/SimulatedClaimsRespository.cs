@@ -39,7 +39,7 @@
                 result.First().IncurredLoss = claimToUpdate.IncurredLoss;
                 result.First().Closed = claimToUpdate.Closed;
 
-                return 1;
+                return 0;
             }
 
             return -101;

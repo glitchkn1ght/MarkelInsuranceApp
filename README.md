@@ -20,9 +20,15 @@
 - The DAL: I know the original spec mentioned generating the claim/company data in the code but i built a real database and DAL to help work out exactly how to send/receive responses from the database.
   E.g there seemed no need to return the updated claim from the DB and building it for real made me realize it could just be an int. 
 - I have included the SQL scripts to create the required tables/sprocs if you would like to test the API with a real db. You will also need to change repository binding in the DI. 
+- The ClaimType: This table was included in the original spec but didn't actually link the Claim table via a key or similar. Therefore i wasn't sure what to do with it and didn't include it as part of the design.
+  If i were to, i would have returned a joined result set in the appropriate stored procedure and map it from there. 
+- The original spec mentions needing a property that will tell if a company has an active policy or not. I wasn't sure if this meant i should rename the 'Active' column to be more explicit, or to calculate if the 
+  'InsuranceEndDate' was less than the current date. In the end i chose the former but again would seek clarification from client in a real situation. 
 - Response types: I've included custom response codes as well as the HTTP Status codes in order to differentiate HTTP errors from those at the code/database level. E.g. there may have been no matching rows in the database but
   the request returned without any issues. 
-- Although the rest of the API is from scratch the PollySqlConnection files are more or less copied from a source i found online (modified by me to include IOptions). I've included a link to the original in the file. 
+- Although the rest of the API is from scratch the PollySqlConnection files are more or less copied from a source i found online (modified by me to include IOptions pattern). I've included a link to the original source. 
+- The update claim endpoint: It was hard to determine the best approach for this. From a business/fraud prevention point of view it would seem sensible to only allow the update of the 'Closed' and possibly 'AssuredName'
+  coluns to prevent updates the were not genuine. However I thought this may have been overthinking the problem so implemented the endpoint as to update all fields subject to some simple validation. 
 
 ### Points For Improvment
 
@@ -31,10 +37,8 @@
 - Validation: Both of the incoming requests and the responses from the databases. On the request side it's hard to know exactly how to improve it without knowing the exact formats of the inputs
   (e.g. if companyId's only beging at 1001 or what a real UCR looks like). 
 - Also i would modify the validators to return a more complex type, containing the error details rather than just a bool in order to keep the controllers skinny. 
-- Response types: I've tried to keep responses consistent overall but if there is a 404 due to a mistake in the URL it will give the default response type defined by microsoft. 
+- Response types: I've tried to keep responses consistent overall but if there is a 404 due to a mistake in the URL or a string for the companyId it will give the default response type defined by microsoft. 
   It's not a hard thing to change but didn't want to delay my submission any further. 
-
-
 
 
 ## OriginalSpec

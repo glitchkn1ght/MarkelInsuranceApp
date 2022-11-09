@@ -10,8 +10,8 @@
         public List<Company> Companies = new List<Company>
         {
             new Company{Id = 101, Name="Universal Exports", Address1="10 Downing Street", Address2="Westminster",Address3="London",PostCode="E1 1ab",Country="England",Active=true, InsuranceEndDate=DateTime.Parse("31/12/2023")},
-            new Company{Id = 101, Name="Aperture Science", Address1="0451 HL Road", Address2="Borealis",Address3="California",PostCode="90210",Country="USA",Active=true, InsuranceEndDate=DateTime.Parse("31/12/2024") },
-            new Company{Id = 101, Name="Acme Corp", Address1="3 Diagon Alley", Address2="Muggleford",Address3="London",PostCode="E2 2RP",Country="England",Active=true, InsuranceEndDate=DateTime.Parse("31/12/2025")}
+            new Company{Id = 102, Name="Aperture Science", Address1="0451 HL Road", Address2="Borealis",Address3="California",PostCode="90210",Country="USA",Active=true, InsuranceEndDate=DateTime.Parse("31/12/2024") },
+            new Company{Id = 103, Name="Acme Corp", Address1="3 Diagon Alley", Address2="Muggleford",Address3="London",PostCode="E2 2RP",Country="England",Active=true, InsuranceEndDate=DateTime.Parse("31/12/2025")}
         };
 
         public List<InsuranceClaim> Claims = new List<InsuranceClaim>

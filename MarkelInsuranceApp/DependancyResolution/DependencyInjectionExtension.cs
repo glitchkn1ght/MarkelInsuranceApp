@@ -25,12 +25,12 @@
 
 
             //To Use Simulated Repos uncomment these lines
-          //  services.AddScoped<IClaimsRepository, SimulatedClaimsRespository>();
-          //  services.AddScoped<ICompanyRepository, SimulatedCompanyRepository>();
+            services.AddScoped<IClaimsRepository, SimulatedClaimsRespository>();
+           services.AddScoped<ICompanyRepository, SimulatedCompanyRepository>();
 
             //To Use Simulated Repos comment out these lines
-            services.AddScoped<IClaimsRepository, ClaimsRespository>();
-            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            //services.AddScoped<IClaimsRepository, ClaimsRespository>();
+            //services.AddScoped<ICompanyRepository, CompanyRepository>();
 
 
             services.AddScoped<IClaimsResponseMapper, ClaimsResponseMapper>();
