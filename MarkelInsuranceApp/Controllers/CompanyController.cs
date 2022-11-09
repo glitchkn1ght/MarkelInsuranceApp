@@ -32,6 +32,14 @@
 
             try 
             {
+                if(companyId == 0)
+                {
+                    companyResponse.ResponseStatus.Code = -101;
+                    companyResponse.ResponseStatus.Message = "Validation of CompanyId failed, please check input.";
+
+                    return new BadRequestObjectResult(companyResponse);
+                }
+
                 this.Logger.LogInformation($"[Operation=Get(Company)], Status=Success, Message=Attempting to retrieve data for Company with id {companyId}");
 
                 companyResponse = await this.CompanyService.GetCompanyById(companyId);

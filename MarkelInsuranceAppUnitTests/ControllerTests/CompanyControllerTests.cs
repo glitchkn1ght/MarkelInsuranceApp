@@ -18,15 +18,12 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.CompanyControllerTests
 
         private Mock<ICompanyService> CompanyServiceMock;
 
-        private CommonTestData testData;
-
         private CompanyController CompanyController;
 
         [SetUp]
         public void Setup()
         {
             this.LoggerMock = new Mock<ILogger<CompanyController>>();
-            this.testData = new CommonTestData();
             this.CompanyServiceMock = new Mock<ICompanyService>();
 
             this.CompanyController = new CompanyController(this.LoggerMock.Object, this.CompanyServiceMock.Object);
@@ -75,7 +72,7 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.CompanyControllerTests
         }
 
         [Test]
-        public void WhenNoExceptionThrown_ThenControllerReturnsCompanyData()
+        public void WhenValidParams_ThenControllerReturnsCompanyData()
         {
             CompanyResponse expected = new CompanyResponse
             {
@@ -85,7 +82,7 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.CompanyControllerTests
 
             this.CompanyServiceMock.Setup(x => x.GetCompanyById(It.IsAny<int>())).ReturnsAsync(expected);
 
-            ObjectResult actual = (ObjectResult)this.CompanyController.Get(It.IsAny<int>()).Result;
+            ObjectResult actual = (ObjectResult)this.CompanyController.Get(101).Result;
 
             Assert.IsInstanceOf<CompanyResponse>(actual.Value);
             Assert.AreEqual(200, actual.StatusCode);
@@ -94,11 +91,22 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.CompanyControllerTests
         }
 
         [Test]
+        public void WhenCompanyIdZero_ThenControllerReturnsBadRequestWithErrorDetails()
+        {
+            ObjectResult actual = (ObjectResult)this.CompanyController.Get(0).Result;
+
+            Assert.IsInstanceOf<CompanyResponse>(actual.Value);
+            Assert.AreEqual(400, actual.StatusCode);
+            Assert.AreEqual(-101, ((CompanyResponse)actual.Value).ResponseStatus.Code);
+            Assert.AreEqual("Validation of CompanyId failed, please check input.", ((CompanyResponse)actual.Value).ResponseStatus.Message);
+        }
+
+        [Test]
         public void WhenExceptionThrown_ThenControllerReturnsInternalServerError()
         {
             this.CompanyServiceMock.Setup(x => x.GetCompanyById(It.IsAny<int>())).Throws(new Exception());
 
-            ObjectResult actual = (ObjectResult)this.CompanyController.Get(It.IsAny<int>()).Result;
+            ObjectResult actual = (ObjectResult)this.CompanyController.Get(101).Result;
 
             Assert.IsInstanceOf<CompanyResponse>(actual.Value);
             Assert.AreEqual(500, actual.StatusCode);

@@ -4,6 +4,7 @@
     using MarkelInsuranceApp.Interfaces.Validation;
     using MarkelInsuranceApp.Models.Claim;
     using MarkelInsuranceApp.Models.Response.Claim;
+    using MarkelInsuranceApp.Models.Response.Company;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -46,7 +47,7 @@
                     claimReponse.ResponseStatus.Code = -102;
                     claimReponse.ResponseStatus.Message = "Validation of Unique Claims Reference failed, please check input.";
 
-                    return new BadRequestObjectResult(claimReponse.ResponseStatus);
+                    return new BadRequestObjectResult(claimReponse);
                 }
 
                 claimReponse = await this.ClaimsService.GetSingleClaimByUCR(uniqueClaimsReference);
@@ -73,6 +74,14 @@
             MultiClaimResponse multiClaimReponse = new MultiClaimResponse();
             try
             {
+                if (companyId == 0)
+                {
+                    multiClaimReponse.ResponseStatus.Code = -101;
+                    multiClaimReponse.ResponseStatus.Message = "Validation of CompanyId failed, please check input.";
+
+                    return new BadRequestObjectResult(multiClaimReponse);
+                }
+
                 multiClaimReponse = await this.ClaimsService.GetAllClaimsForCompany(companyId);
 
                 return new OkObjectResult(multiClaimReponse);
@@ -100,15 +109,15 @@
             {
                 if (!this.ClaimsInputValidator.ValidateInput(claimToUpdate))
                 {
-                    claimUpdateResponse.ResponseStatus.Code = -121;
+                    claimUpdateResponse.ResponseStatus.Code = -103;
                     claimUpdateResponse.ResponseStatus.Message = "Validation of Insurance Claim failed, please check input.";
 
-                    return new BadRequestObjectResult(claimUpdateResponse.ResponseStatus);
+                    return new BadRequestObjectResult(claimUpdateResponse);
                 }
 
                 claimUpdateResponse = await this.ClaimsService.UpdateClaim(claimToUpdate);
 
-                return new OkObjectResult(claimUpdateResponse.ResponseStatus);
+                return new OkObjectResult(claimUpdateResponse);
             }
             catch (Exception ex)
             {
