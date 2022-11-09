@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "92b23742-1562-4994-92c1-73d79ea6e732",
+		"name": "MarkelInsuranceApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetCompany",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44308/company/101",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44308",
+					"path": [
+						"company",
+						"101"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSingleClaimByUCR",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44308/claims/GetSingleClaimByUCR/JAM1234",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44308",
+					"path": [
+						"claims",
+						"GetSingleClaimByUCR",
+						"JAM1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateSingleClaim",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UCR\": \"JAM1234\",\r\n    \"CompanyId\":101,\r\n    \"ClaimDate\":\"2021-12-10\",\r\n    \"LossDate\":\"2021-12-12\",\r\n    \"AssuredName\":\"SomeName\",\r\n    \"IncurredLoss\": 50,\r\n    \"Closed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44308/claims",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44308",
+					"path": [
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllClaimsByCompany",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44308/claims/GetAllClaimsByCompany/101",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44308",
+					"path": [
+						"claims",
+						"GetAllClaimsByCompany",
+						"101"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
