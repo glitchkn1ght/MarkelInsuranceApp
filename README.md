@@ -40,13 +40,12 @@
 
 
 ## OriginalSpec
-API Tech Test
 Background
-We are creating a new front end to an existing SQL Server database, and need a restful DotNetCore
+- We are creating a new front end to an existing SQL Server database, and need a restful DotNetCore
 API to be created to allow us to access the Claims and Company data.
-For the purpose of this exercise, the data can be generated in code rather than coming from SQL
+- For the purpose of this exercise, the data can be generated in code rather than coming from SQL
 server.
-While this is a test exercise, the level of detail and quality should represent something that is fit for
+- While this is a test exercise, the level of detail and quality should represent something that is fit for
 production.
 
 Requirements
@@ -58,7 +57,7 @@ Requirements
 - We need at least one unit test to be created
 
 Database Structure
-CREATE TABLE Claims
+- CREATE TABLE Claims
 (
 UCR VARCHAR(20),
 CompanyId INT,
@@ -68,12 +67,12 @@ LossDate DATETIME,
 [Incurred Loss] DECIMAL(15,2),
 Closed BIT
 )
-CREATE TABLE ClaimType
+- CREATE TABLE ClaimType
 (
 Id INT,
 Name VARCHAR(20)
 )
-CREATE TABLE Company
+- CREATE TABLE Company
 (
 Id INT,
 Name VARCHAR(200),
