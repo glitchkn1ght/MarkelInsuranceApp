@@ -1,13 +1,12 @@
-﻿using MarkelInsuranceApp.DAL.Polly.Policies;
-using System;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
-
-namespace MarkelInsuranceApp.DAL.Polly.ConnectionFactory
+﻿namespace MarkelInsuranceApp.DAL.Polly.ConnectionFactory
 {
     //src https://sergeyakopov.com/reliable-database-connections-and-commands-with-polly/
-    //pretty sure this is where worldpays wp.pollySqlClient library came from. 
+
+    using MarkelInsuranceApp.DAL.Polly.Policies;
+    using System;
+    using System.Data;
+    using System.Data.Common;
+    using System.Data.SqlClient;
 
     public class PollySqlDbConnection : DbConnection
     {

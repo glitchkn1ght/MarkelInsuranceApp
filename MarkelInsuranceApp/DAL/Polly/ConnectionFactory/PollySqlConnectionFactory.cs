@@ -1,12 +1,11 @@
-﻿using MarkelInsuranceApp.Models.Configuration;
-using Microsoft.Extensions.Options;
-using MarkelInsuranceApp.DAL.Polly;
-using MarkelInsuranceApp.DAL.Polly.Policies;
-using System;
-using System.Data;
-
-namespace MarkelInsuranceApp.DAL.Polly.ConnectionFactory
+﻿namespace MarkelInsuranceApp.DAL.Polly.ConnectionFactory
 {
+    using MarkelInsuranceApp.DAL.Polly.Policies;
+    using MarkelInsuranceApp.Models.Configuration;
+    using Microsoft.Extensions.Options;
+    using System;
+    using System.Data;
+
     public interface IPollyConnectionFactory
     {
         IDbConnection CreateOpenConnection();

@@ -30,7 +30,7 @@
 
             if(company == null)
             {
-                companyResponse.ResponseStatus.Code = -101;
+                companyResponse.ResponseStatus.Code = -112;
                 companyResponse.ResponseStatus.Message = $"No matching rows found in database for companyId {CompanyId}.";
                 this.Logger.LogWarning($"[Operation=GetCompanyById(CompanyService)], Status=Success, Message=No matching rows found in database for companyId {CompanyId}.");
             }

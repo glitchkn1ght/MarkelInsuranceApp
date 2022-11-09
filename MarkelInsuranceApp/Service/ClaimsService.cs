@@ -32,7 +32,7 @@
 
             if (insuranceClaim is null)
             {
-                claimResponse.ResponseStatus.Code = -101;
+                claimResponse.ResponseStatus.Code = -111;
                 claimResponse.ResponseStatus.Message = $"No matching rows found in database for UCR {uniqueClaimsReference}.";
                 this.Logger.LogWarning($"[Operation=GetSingleClaimByUCR(ClaimsService)], Status=Success, Message=No Matching rows found in database for UCR {uniqueClaimsReference}");
             }
@@ -78,7 +78,7 @@
             
             if (!(result == 0))
             {
-                claimUpdateResponse.ResponseStatus.Code = -122;
+                claimUpdateResponse.ResponseStatus.Code = -121;
                 claimUpdateResponse.ResponseStatus.Message = $"No matching rows found to update in the database for UCR {claimToUpdate.UCR}";
                 this.Logger.LogWarning($"[Operation=UpdateClaim(ClaimsService)], Status=Success, Message=No matching rows found to update in the database for UCR {claimToUpdate.UCR}");
             }

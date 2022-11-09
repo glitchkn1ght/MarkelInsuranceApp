@@ -2,22 +2,34 @@
 
 ## From James
 
-### TO Dot
+### TO Do
 - Check swagger pages for all controllers.
-- Check response types for all controllers.
-- How will update param be validated?
-- Make sure usings are all inside namespace and unused ones are removed. 
-- 
-
+- Make sure usings are all inside namespace and unused ones are removed. sdfgsdfgsdfgsdfg
 
 ### Custom Error Codes
-- 10x Company Retrieval Error
-- 11x Claim Retrieval Error
-- 12x Claim Update Error
+- 10x Validation  Errors
+- 11x Database Retrieval Errors
+- 12x Database update Errors
+
+### On the spec
+- As the original spec was open to interpretation i did email asking for clarity on a number of points. As i have not received a reply as of time of writing so i made some assumptions which i normally would not.
 
 ### Considerations
 
+- The DAL: I know the original spec mentioned generating the claim/company data in the code but i built a real database and DAL to help work out exactly how to send/receive responses from the database.
+  E.g there seemed no need to return the updated claim from the DB and building it for real made me realize it could just be an int. 
+- Response types: I've included custom response codes as well as the HTTP Status codes in order to differentiate HTTP errors from those at the code/database level. E.g. there may have been no matching rows in the database but
+  the request returned without any issues. 
+- Although the rest of the API is from scratch the PollySqlConnection files are more or less copied from a source i found online (modified by me to include IOptions). I've included a link to the original in the file. 
+
 ### Points For Improvment
+
+- Exhausting Unit/Integration. Very important because you always find bugs and edge cases no matter how well you design something. What i have included is designed to be illustrative of general understanding
+  but it's the first thing i would improve given more time. 
+- Validation: Both of the incoming requests and the responses from the databases. On the request side it's hard to know exactly how to improve it without knowing the exact formats of the inputs
+  (e.g. if companyId's only beging at 1001 or what a real UCR looks like). 
+- Response types: I've tried to keep responses consistent overall but if there is a 404 due to a mistake in the URL it will give the default response type defined by microsoft. 
+  It's not a hard thing to change but didn't want to delay my submission any further. 
 
 
 

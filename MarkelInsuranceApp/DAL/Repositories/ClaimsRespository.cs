@@ -58,7 +58,13 @@
                 var parameters = new DynamicParameters();
 
                 parameters.Add("@UCR", claimToUpdate.UCR);
+                parameters.Add("@CompanyId", claimToUpdate.Closed);
+                parameters.Add("@ClaimDate", claimToUpdate.ClaimDate);
+                parameters.Add("@LossDate", claimToUpdate.LossDate);
+                parameters.Add("@AssuredName", claimToUpdate.AssuredName);
+                parameters.Add("@IncurredLoss", claimToUpdate.IncurredLoss);
                 parameters.Add("@Closed", claimToUpdate.Closed);
+
                 parameters.Add("@retVal", dbType: DbType.Int32 , direction: ParameterDirection.ReturnValue);
 
                await connection.ExecuteAsync(this.ClaimsRepositorySettings.UpdateSingleClaimProc, parameters, commandType: CommandType.StoredProcedure);

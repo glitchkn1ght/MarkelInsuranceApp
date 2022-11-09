@@ -233,7 +233,7 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.ClaimsControllerTests
         //UpdateSingleClaimTests
 
         [Test]
-        public void WhenEverythingOkay_ThenUpdateSuccessful()
+        public void WhenEverythingOkay_ThenUpdateSingleClaimSuccessful()
         {
             ClaimUpdateResponse expected = new ClaimUpdateResponse();
 
@@ -250,7 +250,7 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.ClaimsControllerTests
         }
 
         [Test]
-        public void WhenValidationFails_ThenReturnBadRequest()
+        public void WhenValidationFails_ThenUpdateSingleClaimReturnBadRequest()
         {
             ClaimUpdateResponse expected = new ClaimUpdateResponse();
 
@@ -264,6 +264,23 @@ namespace MarkelInsuranceAppUnitTests.ControllerTests.ClaimsControllerTests
             Assert.AreEqual(400, actual.StatusCode);
             Assert.AreEqual(-103, ((ClaimUpdateResponse)actual.Value).ResponseStatus.Code);
             Assert.AreEqual("Validation of Insurance Claim failed, please check input.", ((ClaimUpdateResponse)actual.Value).ResponseStatus.Message);
+        }
+
+        [Test]
+        public void WhenExceptionThrown_ThenUpdateSingleClaimReturnBadRequest()
+        {
+            ClaimUpdateResponse expected = new ClaimUpdateResponse();
+
+            this.ClaimsInputValidatorMock.Setup(x => x.ValidateInput(It.IsAny<InsuranceClaim>())).Returns(true);
+
+            this.ClaimsServiceMock.Setup(x => x.UpdateClaim(It.IsAny<InsuranceClaim>())).Throws(new Exception());
+
+            ObjectResult actual = (ObjectResult)this.ClaimsController.Update(It.IsAny<InsuranceClaim>()).Result;
+
+            Assert.IsInstanceOf<ClaimUpdateResponse>(actual.Value);
+            Assert.AreEqual(500, actual.StatusCode);
+            Assert.AreEqual(500, ((ClaimUpdateResponse)actual.Value).ResponseStatus.Code);
+            Assert.AreEqual("Internal Server Error", ((ClaimUpdateResponse)actual.Value).ResponseStatus.Message);
         }
     }
 }
