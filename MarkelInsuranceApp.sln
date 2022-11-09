@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkelInsuranceApp", "MarkelInsuranceApp\MarkelInsuranceApp.csproj", "{1C67AD38-FB62-4CFC-A1A3-06AAC7DD42D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkelInsuranceAppUnitTests", "MarkelInsuranceAppUnitTests\MarkelInsuranceAppUnitTests.csproj", "{AB9F0104-C1B4-4254-8B94-8983E37D39F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkelInsuranceAppUnitTests", "MarkelInsuranceAppUnitTests\MarkelInsuranceAppUnitTests.csproj", "{AB9F0104-C1B4-4254-8B94-8983E37D39F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
