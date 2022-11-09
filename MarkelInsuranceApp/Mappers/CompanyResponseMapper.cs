@@ -2,7 +2,6 @@
 {
     using MarkelInsuranceApp.Interfaces.Mappers;
     using MarkelInsuranceApp.Models.Company;
-    using MarkelInsuranceApp.Models.Response;
     using MarkelInsuranceApp.Models.Response.Mapped;
 
     public class CompanyResponseMapper : ICompanyResponseMapper

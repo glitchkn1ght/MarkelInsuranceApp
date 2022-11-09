@@ -1,10 +1,8 @@
 ﻿namespace MarkelInsuranceApp.Validation
 {
-    using MarkelInsuranceApp.Controllers;
     using MarkelInsuranceApp.Interfaces.Validation;
     using Microsoft.Extensions.Logging;
     using System;
-    using System.Text.RegularExpressions;
 
     public class StringInputValidator: IInputValidator<string>
     {

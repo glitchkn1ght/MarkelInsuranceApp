@@ -58,7 +58,7 @@
                 var parameters = new DynamicParameters();
 
                 parameters.Add("@UCR", claimToUpdate.UCR);
-                parameters.Add("@CompanyId", claimToUpdate.Closed);
+                parameters.Add("@CompanyId", claimToUpdate.CompanyId);
                 parameters.Add("@ClaimDate", claimToUpdate.ClaimDate);
                 parameters.Add("@LossDate", claimToUpdate.LossDate);
                 parameters.Add("@AssuredName", claimToUpdate.AssuredName);
