@@ -29,7 +29,7 @@
 
 ### Points For Improvment
 
-- Exhausting Unit/Integration. Very important considering that these tests always find bugs and edge cases no matter how well you design something. What i have included is meant to be illustrative of general understanding
+- Exhaustive Unit/Integration testing. Very important considering that these tests always find bugs and edge cases no matter how well you design something. What i have included is meant to be illustrative of general understanding
   but it's the first thing i would make more airtight given more time. 
 - Validation: Both of the incoming requests and the responses from the databases. On the request side it's hard to know exactly how to improve it without knowing the exact formats of the inputs
   (e.g. if companyId's only begin at 1001 or what a real UCR looks like). 
